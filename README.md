@@ -90,7 +90,7 @@ export function someSyncAction() {
 }
 
 
-export function getUserAsyncAction() {
+export function someAsyncAction() {
   
   return function(dispatch) {
     axios(URL)
