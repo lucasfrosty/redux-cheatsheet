@@ -67,7 +67,8 @@ const reducer = (state = initialState, action) => {
   return state;
 }
 ```
-### Multiples Reducers
+
+#### Multiples Reducers
 ```js
 import { combineReducers } from 'redux';
 
@@ -75,4 +76,33 @@ import users from './usersReducer';
 import movies from './moviesReducer';
 
 export default combineReducers({ users, movies, });
+```
+
+## Actions
+```js
+import axios from 'axios';
+const URL = 'https://jsonplaceholder.typicode.com/users';
+
+export function someSyncAction() {
+  return function(dispatch) {
+    dispatch({ type: 'SYNC_TYPE', payload: 1, });
+  }
+}
+
+
+export function getUserAsyncAction() {
+  
+  return function(dispatch) {
+    axios(URL)
+      .then(response => {
+        dispatch({ type: 'FETCH_USER_FULFILLED', payload: response.data });
+      })
+      .catch(error => {
+        dispatch({
+          type: 'FETCH_USER_REJECTED',
+          payload: response.data});
+      })
+  }
+
+}
 ```
