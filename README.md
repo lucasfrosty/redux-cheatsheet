@@ -74,10 +74,10 @@ const reducer = (state = initialState, action) => {
 ```js
 import { combineReducers } from 'redux';
 
-import users from './usersReducer';
-import movies from './moviesReducer';
+import usersReducer from './usersReducer';
+import moviesReducer from './moviesReducer';
 
-export default combineReducers({ users, movies, });
+export default combineReducers({ user: usersReducer, movie: moviesReducer, });
 ```
 
 ## Actions
@@ -92,7 +92,7 @@ export function someSyncAction() {
 }
 
 
-export function someAsyncAction() {
+export function fetchUsers() {
   
   return function(dispatch) {
     axios(URL)
@@ -131,4 +131,60 @@ const customLogger = (store) => (next) => action => {
   console.log('That is the action', action);
   next(action);
 }
+```
+
+## Connecting React and Redux
+```js
+import ReactDOM from 'react-dom';
+import React from 'react';
+
+import { Provider } from 'react-redux';
+import App from './components/App';
+import store from './store';
+
+const app = document.getElementById('root');
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App/>
+  </Provider>,
+  app
+);
+```
+
+#### App.js file
+```js
+import React from 'react';
+
+// code of fetchUsers is on the Actions section
+import { fetchUsers } from '../actions/UserActions';
+import { fetchMovies } from '../actions/MovieActions';
+
+class App extends React.Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    return (
+      <div>
+        <User username={this.props.user.name}/>
+        <Movie name={this.props.movie.name} rating={this.props.movie.rating}/>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    movie: state.movie,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return dispatch(fetchUsers());
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 ```
