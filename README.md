@@ -67,3 +67,12 @@ const reducer = (state = initialState, action) => {
   return state;
 }
 ```
+### Multiples Reducers
+```js
+import { combineReducers } from 'redux';
+
+import users from './usersReducer';
+import movies from './moviesReducer';
+
+export default combineReducers({ users, movies, });
+```
