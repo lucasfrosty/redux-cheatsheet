@@ -155,10 +155,14 @@ ReactDOM.render(
 #### App.js file
 ```js
 import React from 'react';
+import { connect } from 'react-redux';
 
 // code of fetchUsers is on the Actions section
 import { fetchUsers } from '../actions/UserActions';
 import { fetchMovies } from '../actions/MovieActions';
+
+import User from './User';
+import Movie from './Movie';
 
 class App extends React.Component {
   constructor() {
@@ -168,6 +172,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Button changeUsername={() => this.props.fetchUser()}>
         <User username={this.props.user.name}/>
         <Movie name={this.props.movie.name} rating={this.props.movie.rating}/>
       </div>
@@ -183,7 +188,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return dispatch(fetchUsers());
+  return { fetchUsers: () => dispatch(fetchUsers()); }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
