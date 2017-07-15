@@ -1,3 +1,8 @@
+# React-redux cheat sheet
+This is my personal cheat sheet, i didn't commented this very well because my intention is just to make my life easier when i forget something about Redux. This probably will not make much sense to you even if you know Redux. But give it a try if you want, feedbacks are welcome.
+
+*By the way, these codes below are very 'handly' and wasn't tested, so don't try it at home.*
+
 ![diagram](https://github.com/lucasfrosty/redux-cheatsheet/blob/master/diagram.png 'Redux Diagram')
 
 # Brainstorm
@@ -164,10 +169,8 @@ import { fetchMovies } from '../actions/MovieActions';
 import User from './User';
 import Movie from './Movie';
 
+
 class App extends React.Component {
-  constructor() {
-    super();
-  }
 
   render() {
     return (
@@ -178,7 +181,9 @@ class App extends React.Component {
       </div>
     );
   }
+
 }
+
 
 const mapStateToProps = (state) => {
   return {
@@ -187,9 +192,11 @@ const mapStateToProps = (state) => {
   }
 }
 
+
 const mapDispatchToProps = (dispatch) => {
-  return { fetchUsers: () => dispatch(fetchUsers()); }
+  return { fetchUsers: () => dispatch(fetchUsers()) }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 ```
