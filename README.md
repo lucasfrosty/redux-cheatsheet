@@ -1,3 +1,12 @@
+# Brainstorm
+
+- Create the store
+- Pass the reducer to the store
+- The store will dispatch an action passing the **action.type** and **action.payload**
+- The reducer will return a new state (not changing the previous one) based on the **action.type**
+- The new state will be stored on the store.
+- On the store change, the React itself will rerender the components that uses it.
+
 ## Store
 ```js
 import { createStore } from 'redux';
