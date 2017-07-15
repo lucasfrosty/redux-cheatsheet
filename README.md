@@ -4,7 +4,8 @@ import { createStore } from 'redux';
 
 const store = createStore(reducer);
 
-// in React this code will not be necessary because the store will be passed as props, and you know that once the prop is changed the React will rerender.
+/* in React this code will not be necessary because the store will be passed as props,
+and you know that once the prop is changed the React will rerender. */
 store.subscribe(() => {
   console.log('Store was updated!!', store.getState());
 })
