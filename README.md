@@ -13,7 +13,7 @@
 ```js
 import { createStore } from 'redux';
 
-const store = createStore(reducer);
+const store = createStore(reducer, middleware);
 
 /* in React this code will not be necessary because the store will be passed as props,
 and you know that once the prop is changed the React will rerender. */
@@ -106,5 +106,29 @@ export function someAsyncAction() {
       })
   }
 
+}
+```
+
+## Middleware
+
+```js
+import { createStore, applyMiddleware } from 'redux';
+
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
+import promise from 'redux-promise-middleware';
+
+import reducer from './reducer';
+
+const middleware = applyMiddleware(promise(), logger, thunk);
+
+export default createStore(reducer, middleware);
+```
+
+#### Logger implementation
+```js
+const customLogger = (store) => (next) => action => {
+  console.log('That is the action', action);
+  next(action);
 }
 ```
