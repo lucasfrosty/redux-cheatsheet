@@ -1,3 +1,5 @@
+![diagram](https://github.com/lucasfrosty/redux-cheatsheet/blob/master/diagram.png 'Redux Diagram')
+
 # Brainstorm
 
 - Create the store
