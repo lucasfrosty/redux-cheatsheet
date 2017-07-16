@@ -107,7 +107,7 @@ export function fetchUsers() {
       .catch(error => {
         dispatch({
           type: 'FETCH_USER_REJECTED',
-          payload: response.data});
+          payload: error});
       })
   }
 
