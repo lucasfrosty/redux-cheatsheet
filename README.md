@@ -200,3 +200,9 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 ```
+
+<br/>
+<br/>
+
+# Project Structure
+![Project Structure](https://github.com/lucasfrosty/redux-cheatsheet/blob/master/structure.png 'Project Structure')
