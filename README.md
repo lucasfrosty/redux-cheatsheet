@@ -90,7 +90,7 @@ const reducer = (state = initialState, action) => {
 }
 ```
 
-#### Multiples Reducers 
+#### Multiples Reducers ( reducers/index.js )
 ```js
 import { combineReducers } from 'redux';
 
@@ -148,7 +148,7 @@ ReactDOM.render(
 );
 ```
 
-#### App.js file
+#### App.js file ( smart component )
 ```js
 import React from 'react';
 import { connect } from 'react-redux';
