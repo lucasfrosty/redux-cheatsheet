@@ -105,26 +105,22 @@ export default combineReducers({ user: usersReducer, movie: moviesReducer, });
 import axios from 'axios';
 const URL = 'https://jsonplaceholder.typicode.com/users';
 
-export function someSyncAction() {
+export function foo() {
   return function(dispatch) {
-    dispatch({ type: 'SYNC_TYPE', payload: 1, });
+    dispatch({ type: 'BAR', payload: 'foo' });
   }
 }
 
-
 export function fetchUsers() {
-  
-  return function(dispatch) {
-    axios(URL)
-      .then(response => {
-        dispatch({ type: 'FETCH_USER_FULFILLED', payload: response.data });
-      })
-      .catch(error => {
-        dispatch({
-          type: 'FETCH_USER_REJECTED',
-          payload: error});
-      })
-  }
+
+  return function (dispatch) {
+    return dispatch({
+      type: 'FETCH_INPUT',
+      payload: axios(URL)
+                .then(response => response.data.text)
+                .catch(err => err),
+    });
+  };
 
 }
 ```
